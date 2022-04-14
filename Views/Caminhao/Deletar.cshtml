@@ -1,0 +1,44 @@
+﻿@model Caminhao
+
+<form method="post" asp-action="Deletar">
+	<input asp-for="Id" hidden />
+	<div class="border p-3 mt-4">
+		<div class="row pb-2">
+			<h2 class="text-primary text-light">Deletar</h2>
+			<hr />
+		</div>
+		<div asp-validation-summary="All"></div>
+		<div class="mb-3">
+			<label asp-for="Nome"></label>
+			<input asp-for="Nome" disabled class="form-control" />
+		</div>
+		<div class="mb-3">
+			<label asp-for="Modelo"></label>
+			<select asp-for="Modelo" disabled class="form-control">
+				<option value="FH">FH</option>
+				<option value="FM">FM</option>
+			</select>
+		</div>
+		<div class="mb-3">
+			<label asp-for="AnoFabricacao"></label>
+			<input asp-for="AnoFabricacao" class="form-control" value="@DateTime.Now.Year" disabled/>
+		</div>
+		<div class="mb-3">
+			<label asp-for="AnoModelo"></label>
+			<select asp-for="AnoModelo" disabled class="form-control">
+				<option value="@DateTime.Now.Year">@DateTime.Now.Year</option>
+				<option value="@DateTime.Now.AddYears(1).Year">@DateTime.Now.AddYears(1).Year</option>
+			</select>
+		</div>
+		<button type="submit" class="btn btn-danger" style="width:150px">Deletar</button>
+		<a asp-controller="Caminhao" asp-action="Index" class="btn btn-secondary" style="width:150px">
+			Voltar
+		</a>
+	</div>
+</form>
+
+@section Scripts{
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+}

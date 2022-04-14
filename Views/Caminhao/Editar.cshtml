@@ -1,0 +1,47 @@
+﻿@model Caminhao
+
+<form method="post" asp-action="Editar">
+	<div class="border p-3 mt-4">
+		<div class="row pb-2">
+			<h2 class="text-primary text-light">Editar</h2>
+			<hr />
+		</div>
+		<div asp-validation-summary="All"></div>
+		<div class="mb-3">
+			<label asp-for="Nome"></label>
+			<input asp-for="Nome" class="form-control" />
+			<span asp-validation-for="Nome" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+			<label asp-for="Modelo"></label>
+			<select asp-for="Modelo" class="form-control">
+				<option value="FH">FH</option>
+				<option value="FM">FM</option>
+			</select>
+			<span asp-validation-for="Modelo" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+			<label asp-for="AnoFabricacao"></label>
+			<input asp-for="AnoFabricacao" class="form-control" value="@DateTime.Now.Year" disabled/>
+			<span asp-validation-for="AnoFabricacao" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+			<label asp-for="AnoModelo"></label>
+			<select asp-for="AnoModelo" class="form-control">
+				<option value="@DateTime.Now.Year">@DateTime.Now.Year</option>
+				<option value="@DateTime.Now.AddYears(1).Year">@DateTime.Now.AddYears(1).Year</option>
+			</select>
+			<span asp-validation-for="AnoModelo" class="text-danger"></span>
+		</div>
+		<button type="submit" class="btn btn-primary" style="width:150px">Salvar</button>
+		<a asp-controller="Caminhao" asp-action="Index" class="btn btn-secondary" style="width:150px">
+			Voltar
+		</a>
+	</div>
+</form>
+
+@section Scripts{
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+}
